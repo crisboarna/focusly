@@ -1,0 +1,120 @@
+name: pull_request
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  web:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: write
+    defaults:
+      run:
+        working-directory: apps/web
+    steps:
+      - name: 📚 Git Checkout
+        uses: actions/checkout@v4
+
+      - name: 🧰 Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 📦 Install Dependencies
+        run: yarn install
+
+      - name: ✨ Linting
+        run: yarn lint
+
+      - name: 🏗️ Build
+        run: yarn build
+
+      - name: 📓 Documentation Release
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./apps/web/out
+          user_name: github-actions[bot]
+          user_email: 41898282+github-actions[bot]@users.noreply.github.com
+
+  extension_chrome:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+    defaults:
+      run:
+        working-directory: apps/extension
+    steps:
+      - name: 📚 Git Checkout
+        uses: actions/checkout@v4
+
+      - name: 🧰 Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 📦 Install Dependencies
+        run: yarn install
+
+      - name: ✨ Linting
+        run: yarn lint
+
+      - name: 🏗️ Build
+        run: yarn build
+
+      - name: 🏗️ Zip
+        run: yarn zip
+
+#      - name: 🚀 Publish Chrome Extension
+#        uses: mnao305/chrome-extension-upload@v5.0.0
+#        with:
+#          glob: true
+#          file-path: .output/*.zip
+#          client-id: ${{ secrets.CLIENT_ID }}
+#          client-secret: ${{ secrets.CLIENT_SECRET }}
+#          refresh-token: ${{ secrets.REFRESH_TOKEN }}
+
+  extension_firefox:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+    defaults:
+      run:
+        working-directory: apps/extension
+    steps:
+      - name: 📚 Git Checkout
+        uses: actions/checkout@v4
+
+      - name: 🧰 Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 📦 Install Dependencies
+        run: yarn install
+
+      - name: ✨ Linting
+        run: yarn lint
+
+      - name: 🏗️ Build
+        run: yarn build
+
+      - name: 🏗️ Zip
+        run: yarn zip:firefox
+
+#      - name: 🚀 Publish Firefox Addon
+#        uses: trmcnvn/firefox-addon@v1
+#        with:
+#          # uuid is only necessary when updating an existing addon,
+#          # omitting it will create a new addon
+#          uuid: '{7b312f5e-9680-436b-acc1-9b09f60e8aaa}'
+#          xpi: .output/*.zip
+#          manifest: manifest.json
+#          api-key: ${{ secrets.FIREFOX_API_KEY }}
+#          api-secret: ${{ secrets.FIREFOX_API_SECRET }}
+
