@@ -16,7 +16,7 @@ node_modules
 *.launch
 .settings/
 *.sublime-workspace
-
+apps/web/.next/
 # IDE - VSCode
 .vscode/*
 !.vscode/settings.json

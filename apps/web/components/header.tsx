@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Logo from '../public/favicon.ico'
 
 export default function Header() {
   return (
@@ -9,7 +8,7 @@ export default function Header() {
           <div className="shrink-0 mr-4 flex items-center">
             <Link href="/" aria-label="Focusly" className={"flex items-center"}>
               <span>
-                <img src={Logo.src} alt="Focusly" className="w-8 h-8 fill-current text-purple-600" />
+                <img src={'/focusly/favicon.ico'} alt="Focusly" className="w-8 h-8 fill-current text-purple-600" />
               </span>
               <span className={"ml-2"}>Focusly</span>
             </Link>

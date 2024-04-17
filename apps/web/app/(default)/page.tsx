@@ -1,4 +1,5 @@
 import Landing from '@/components/landing'
+import Shields from '@/components/shields'
 import Features from '@/components/features'
 
 export const metadata = {
@@ -10,6 +11,7 @@ export default function Home() {
   return (
     <>
       <Landing />
+      <Shields />
       <Features />
     </>
   )
