@@ -10,9 +10,9 @@ export type TableProps = {
   readonly toggleTrigger: () => void;
 };
 
-function Table({ items, toggles, setToggles, toggleTrigger }: TableProps) {
+function Table({ items, toggles, setToggles, toggleTrigger, ...props }: TableProps) {
   return (
-    <table className={"table"}>
+    <table className={"table"} {...props}>
       <thead>
         <tr>
           <th>Domain</th>
@@ -28,6 +28,7 @@ function Table({ items, toggles, setToggles, toggleTrigger }: TableProps) {
             toggles={toggles}
             setToggles={setToggles}
             toggleTrigger={toggleTrigger}
+            data-testid={"table-entry"}
           />
         ))}
       </tbody>

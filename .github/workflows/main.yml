@@ -33,7 +33,7 @@ jobs:
         run: yarn build
 
       - name: 📓 Documentation Release
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./apps/web/out
@@ -62,6 +62,17 @@ jobs:
 
       - name: ✨ Linting
         run: yarn lint
+
+      - name: 🧪 Test
+        run: yarn test
+
+      - name: 📊 Code Coverage
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          directory: ./apps/extension/coverage
+          fail_ci_if_error: true
+          verbose: true
 
       - name: 🏗️ Build
         run: yarn build
@@ -100,6 +111,9 @@ jobs:
 
       - name: ✨ Linting
         run: yarn lint
+
+      - name: 🧪 Test
+        run: yarn test
 
       - name: 🏗️ Build
         run: yarn build

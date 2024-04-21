@@ -48,6 +48,7 @@ function Options({ domains, setDomains }: OptionsProps) {
       toggles={toggles}
       setToggles={setToggles}
       toggleTrigger={toggleTrigger}
+      data-testid={"table"}
     />
   );
 }

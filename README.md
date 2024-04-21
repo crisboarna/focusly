@@ -117,11 +117,12 @@ cd apps/extension && yarn dev:firefox
 ```shell
 cd apps/extension && yarn lint
 ```
+
 ### Testing
 ```shell
 cd apps/extension && yarn test
 ```
-`jest` is used as the testing framework.
+`vitest` is used as the testing framework.
 
 ### Building
 ```shell

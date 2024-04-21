@@ -28,6 +28,7 @@ function App() {
         </a>
         <p>
           <img
+            data-testid={"toggle-extension-src"}
             src={extensionEnabled ? iconToggleOn : iconToggleOff}
             className="power-icon"
             alt="Focusly Enable/Disable"

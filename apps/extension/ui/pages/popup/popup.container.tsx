@@ -54,7 +54,7 @@ function Popup({ currentDomains, configuredDomains, setDomains }: PopupProps) {
   }, [trigger, setTrigger]);
 
   if (!currentDomains || !currentDomains.length) {
-    return <></>;
+    return <div data-testid={"popup-empty"}></div>;
   }
 
   return (
@@ -63,6 +63,7 @@ function Popup({ currentDomains, configuredDomains, setDomains }: PopupProps) {
       toggles={toggles}
       setToggles={setToggles}
       toggleTrigger={toggleTrigger}
+      data-testid={"table"}
     />
   );
 }

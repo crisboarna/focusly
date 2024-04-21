@@ -16,27 +16,29 @@ function App() {
   return (
     <>
       <div className={"toggle-container"}>
-        <div className={"toggle"}>
+        <div className={"toggle"} data-testid={"toggle-extension"}>
           <span>On/Off</span>
           <img
+            data-testid={"toggle-extension-src"}
             src={extensionEnabled ? iconToggleOn : iconToggleOff}
             className="power-icon"
             alt="Focusly Enable/Disable"
             onClick={() => setExtensionEnabled(!extensionEnabled)}
           />
         </div>
-        <div className={"toggle"}>
+        <div className={"toggle"} data-testid={"toggle-audit"}>
           <span>Audit Console On/Off</span>
           <img
+            data-testid={"toggle-audit-src"}
             src={auditEnabled ? iconToggleOn : iconToggleOff}
             className="power-icon"
-            alt="Focusly Enable/Disable"
+            alt="Audit Enable/Disable"
             onClick={() => setAuditEnabled(!auditEnabled)}
           />
         </div>
       </div>
       <div className={"fixed-top"}>
-        <a href="https://wxt.dev" target="_blank">
+        <a href="https://crisboarna.github.io/focusly" target="_blank">
           <img
             src={extensionEnabled ? focuslyLogoEnabled : focuslyLogoDisabled}
             className="logo"

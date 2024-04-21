@@ -15,6 +15,7 @@ function TableEntry({
   toggles,
   setToggles,
   toggleTrigger,
+  ...props
 }: TableProps) {
   const handleToggleChange = (key: keyof DomainToggles) => {
     const newToggles: DomainToggles =
@@ -26,7 +27,7 @@ function TableEntry({
         : {
             ...toggles[item.domain],
             [Toggle.ALL]: false,
-            [key]: !toggles[item.domain]?.[key] ?? true,
+            [key]: !toggles[item.domain]?.[key]
           };
 
     setToggles({
@@ -38,7 +39,7 @@ function TableEntry({
   };
 
   return (
-    <tr key={index}>
+    <tr key={index} {...props}>
       <td>{item.domain}</td>
       <td>
         <table className={"table"}>

@@ -17,16 +17,16 @@ const generateIcons = (type: "enabled" | "disabled") => {
 export default defineBackground(() => {
   const reload = () => browser.runtime.reload();
 
-  const execute = (enabled: boolean) => {
+  const execute = async (enabled: boolean) => {
     if (!enabled) {
-      browser.action.setIcon(generateIcons("disabled"));
+      await browser.action.setIcon(generateIcons("disabled"));
       extensionPreviousEnabled.getValue().then((singleton) => {
         if (singleton) {
           extensionPreviousEnabled.setValue(false).then(() => reload());
         }
       });
     } else {
-      browser.action.setIcon(generateIcons("enabled"));
+      await browser.action.setIcon(generateIcons("enabled"));
       extensionPreviousEnabled.getValue().then((singleton) => {
         if (!singleton) {
           extensionPreviousEnabled
